@@ -17,7 +17,7 @@ int main(int argc, char const** argv){
 
 	Ros::Application *App = new Ros::Application(1000, 650, "test");
     MiPantalla *MainScreen = new MiPantalla("MainScreen", App);
-    Ros::Pantalla *refMainScreen = MainScreen;//
+    Ros::Pantalla *refMainScreen = MainScreen;
 
     App->AgregarSonido("sound.Music", "assets/music.ogg");
     App->AgregarSonido("sound.disparo", "assets/disparo.ogg");
