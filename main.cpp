@@ -6,6 +6,11 @@
 
 /*
 g++ lib/*.cpp *.cpp -o game  -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio
+
+la idea es modificar esto para que el juego arranque mostrando
+Acá pantalla en donde se pueda elegir la opcion de jugar salir, una,
+elegir nave, etc.
+
 */
 
 int main(int argc, char const** argv){
