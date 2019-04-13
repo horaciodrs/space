@@ -3,6 +3,7 @@
 
 #include "lib/application.hpp"
 #include "mipantalla.hpp"
+#include "pantalla_menu.hpp"
 
 /*
 g++ lib/*.cpp *.cpp -o game  -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio
@@ -16,8 +17,14 @@ elegir nave, etc.
 int main(int argc, char const** argv){
 
 	Ros::Application *App = new Ros::Application(1000, 650, "test");
-    MiPantalla *MainScreen = new MiPantalla("MainScreen", App);
+
+	//Creo la pantalla del Juego...
+	MiPantalla *MainScreen = new MiPantalla("MainScreen", App);
     Ros::Pantalla *refMainScreen = MainScreen;
+
+	//Creo la pantalla del Menu...
+	PantallaMenu *MenuScreen = new PantallaMenu("MenuScreen", App);
+	Ros::Pantalla *refMenuScreen = MenuScreen;
 
     App->AgregarSonido("sound.Music", "assets/music.ogg");
     App->AgregarSonido("sound.disparo", "assets/disparo.ogg");
@@ -71,10 +78,14 @@ int main(int argc, char const** argv){
     App->AgregarImagen("img.lifebar95", "assets/lifebar95.png");
     App->AgregarImagen("img.lifebar100", "assets/lifebar100.png");
 
+	App->AgregarImagen("img.Opciones.Jugar", "assets/lifebar100.png");
+
     App->AgregarFuente("ttf.arcade", "assets/ARCADE.TTF");
+	App->AgregarFuente("ttf.zerovelo", "assets/zerovelo.ttf");
 
     App->AgregarPantalla(refMainScreen);
-    App->SetPantallaActiva("MainScreen");
+	App->AgregarPantalla(refMenuScreen);
+    App->SetPantallaActiva("MenuScreen");
 
 	App->Init();
 
@@ -83,6 +94,7 @@ int main(int argc, char const** argv){
 	App->Run();
 
     delete MainScreen;
+	delete MenuScreen;
     delete App;
 
     return EXIT_SUCCESS;

@@ -7,7 +7,19 @@
 
 class PantallaMenu : public Ros::Pantalla{
 
+	private:
+		ObjectManager<Ros::Object> Estrellas;
+		ObjectManager<Ros::Object> Opciones;
+
 	public:
+
+		void MoverEstrellas(void);
+		void CrearEstrellas(void);
+		void DibujarEstrellas(void);
+
+		void CrearOpciones(void);
+		void DibujarOpciones(void);
+
 		void Init(void);
 		void Render(void);
 		void EventHandler(void);
@@ -15,6 +27,6 @@ class PantallaMenu : public Ros::Pantalla{
 		PantallaMenu(std::string pId, Ros::Application *pApp);
 		~PantallaMenu();
 
-}
+};
 
 #endif
