@@ -12,6 +12,7 @@ class PantallaMenu : public Ros::Pantalla{
         int SelectedOption;
         bool CanProcessDown;
         bool CanProcessUp;
+        bool CanProcessOption;
 
 	public:
 

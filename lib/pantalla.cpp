@@ -29,6 +29,8 @@ namespace Ros{
 	}
 
 	void Pantalla::Run(void){
+
+        std::cout << "ejecutando pantalla" << std::endl;
 		
 		while (App->Window->isOpen()){
 			
@@ -59,10 +61,13 @@ namespace Ros{
 				}
 				
 			}
+
 			
 			EventHandler();
 
-			App->Window->clear();
+            std::cout << "Pasanndo al event handler" << std::endl;
+			
+            App->Window->clear();
 			
 			Render();
 			
@@ -102,6 +107,12 @@ namespace Ros{
 			isKeyActive[keySpace] = true;
 		}else if (event->type == sf::Event::KeyReleased && event->key.code == sf::Keyboard::Space) {
 			isKeyActive[keySpace] = false;
+		}
+        
+        if (event->type == sf::Event::KeyPressed && event->key.code == sf::Keyboard::Return) {
+			isKeyActive[keyEnter] = true;
+		}else if (event->type == sf::Event::KeyReleased && event->key.code == sf::Keyboard::Return) {
+			isKeyActive[keyEnter] = false;
 		}
 
 	}
@@ -150,6 +161,8 @@ namespace Ros{
 		isKeyActive[keyRight]	= false;
 		isKeyActive[keyDown]	= false;
 		isKeyActive[keySpace]	= false;
+        isKeyActive[keyEnter]	= false;
+
 
         isKeyUp[keyLeft]	= false;
 		isKeyUp[keyUp]		= false;

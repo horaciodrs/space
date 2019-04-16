@@ -7,7 +7,7 @@
 
 namespace Ros{
 	
-	enum Teclas{keyLeft, keyUp, keyRight, keyDown, keySpace};
+	enum Teclas{keyLeft, keyUp, keyRight, keyDown, keySpace, keyEnter};
 
 	class Application;
 
@@ -16,8 +16,8 @@ namespace Ros{
 			std::string Id;
 			Ros::Application *App;
 		public:
-			bool isKeyActive[5];
-            bool isKeyUp[5];
+			bool isKeyActive[6];
+            bool isKeyUp[6];
 			std::string getId(){return Id;}
 			void procesarTeclasActivas(sf::Event *event);
 			void procesarTeclasUp(sf::Event *event);

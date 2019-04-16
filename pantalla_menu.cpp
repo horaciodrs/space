@@ -114,6 +114,8 @@ void PantallaMenu::EventHandler(void){
 	
     MoverEstrellas();
 
+    //Procesa el evento tecla DOWN.
+    
     if(this->isKeyActive[Ros::keyDown]){
         if(this->CanProcessDown == true){
             this->SelectedOption++;
@@ -122,6 +124,8 @@ void PantallaMenu::EventHandler(void){
     }else{
         this->CanProcessDown = true;
     }
+
+    //Procesa el evento tecla UP.
 
     if(this->isKeyActive[Ros::keyUp]){
         if(this->CanProcessUp == true){
@@ -132,6 +136,8 @@ void PantallaMenu::EventHandler(void){
         this->CanProcessUp = true;
     }
 
+    //Corrige la opción elegida en caso de que haga falta.
+
     if(this->SelectedOption > 3){
         this->SelectedOption = 0;
     }
@@ -139,6 +145,30 @@ void PantallaMenu::EventHandler(void){
     if(this->SelectedOption < 0){
         this->SelectedOption = 3;
     }
+
+    //Procesa el evento tecla ENTER
+
+    if(this->isKeyActive[Ros::keyEnter]){
+        if(this->CanProcessOption == true){
+            
+            //procesar opcion elegida...
+            switch(this->SelectedOption){
+                case 0:
+                    this->App->SetPantallaActiva("MainScreen");
+                    this->App->GetPantallaActiva()->Init();
+                    this->App->GetPantallaActiva()->Run();
+                    break;
+                case 3:
+                    this->App->GetRenderWindow()->close();
+                    break; 
+            }
+
+            this->CanProcessOption = false;
+        }
+    }else{
+        this->CanProcessOption = true;
+    }
+
 
 }
 
@@ -173,6 +203,7 @@ PantallaMenu::PantallaMenu(std::string pId, Ros::Application *pApp) : Pantalla(p
     this->SelectedOption = 0;
     this->CanProcessDown = true;
     this->CanProcessUp = true;
+    this->CanProcessOption = true;
 
 }
 
