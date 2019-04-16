@@ -17,8 +17,10 @@ namespace Ros{
 			Ros::Application *App;
 		public:
 			bool isKeyActive[5];
+            bool isKeyUp[5];
 			std::string getId(){return Id;}
 			void procesarTeclasActivas(sf::Event *event);
+			void procesarTeclasUp(sf::Event *event);
             virtual void Init(void);
 			virtual void Render(void);
 			virtual void Run(void);

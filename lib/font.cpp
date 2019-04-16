@@ -9,15 +9,21 @@ namespace Ros{
 
     }
 
+
     void Font::Draw(std::string str, int size, int x, int y, float angle){
+        Draw(str, size, x, y, angle, sf::Color::White);
+    }
+
+    void Font::Draw(std::string str, int size, int x, int y, float angle, sf::Color color){
 
         sf::Text text;
 
         text.setFont(*Fuente);
         text.setString(str);
         text.setCharacterSize(size);
-        text.setFillColor(sf::Color::White);
-        text.setStyle(sf::Text::Bold | sf::Text::Underlined);
+        text.setFillColor(color);
+        //text.setStyle(sf::Text::Bold | sf::Text::Underlined);
+        text.setStyle(sf::Text::Bold);
         text.setPosition(x, y);
 
         sf::Vector2f centro;

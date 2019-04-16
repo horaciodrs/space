@@ -20,6 +20,14 @@ namespace Ros{
 
 	}
 
+    void Application::EscribirTexto(std::string fontId, std::string str, int size, int x, int y, sf::Color color){
+
+		Ros::Font *Fnt = this->Fonts.Get(fontId);
+
+		Fnt->Draw(str, size, x, y, 0, color);
+
+	}
+
 	void Application::EscribirTexto(std::string fontId, std::string str, int size, int x, int y){
 
 		Ros::Font *Fnt = this->Fonts.Get(fontId);

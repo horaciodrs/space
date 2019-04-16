@@ -7,22 +7,40 @@
 
 const int MAX_ESTRELLAS = 200;
 
-void PantallaMenu::CrearOpciones(void){
-
-	Ros::Object *itemOpcion;
-
-	itemOpcion = Opciones.Add("Opciones.Jugar");
-
-	itemOpcion->setY(300);
-	itemOpcion->setX(100);
-	itemOpcion->setImage(App->GetImage("img.Opciones.Jugar"));
-	itemOpcion->setApplication(App);
-
-}
 
 void PantallaMenu::DibujarOpciones(void){
 
-	this->Opciones.Get("Opciones.Jugar")->Draw();
+    sf::Color textColor = sf::Color(255,255,255,255);
+    sf::Color textColorSelected = sf::Color(255, 0, 0, 255);
+
+    switch(this->SelectedOption){
+    
+        case 0:
+            this->App->EscribirTexto("ttf.arcade", "Play",  30, 100, 230, textColorSelected);
+            this->App->EscribirTexto("ttf.arcade", "Select Pilot",  30, 100, 270, textColor);
+            this->App->EscribirTexto("ttf.arcade", "Historical Points",  30, 100, 310, textColor);
+            this->App->EscribirTexto("ttf.arcade", "Exit",  30, 100, 350, textColor);
+            break;
+        case 1:
+            this->App->EscribirTexto("ttf.arcade", "Play",  30, 100, 230, textColor);
+            this->App->EscribirTexto("ttf.arcade", "Select Pilot",  30, 100, 270, textColorSelected);
+            this->App->EscribirTexto("ttf.arcade", "Historical Points",  30, 100, 310, textColor);
+            this->App->EscribirTexto("ttf.arcade", "Exit",  30, 100, 350, textColor);
+            break;
+         case 2:
+            this->App->EscribirTexto("ttf.arcade", "Play",  30, 100, 230, textColor);
+            this->App->EscribirTexto("ttf.arcade", "Select Pilot",  30, 100, 270, textColor);
+            this->App->EscribirTexto("ttf.arcade", "Historical Points",  30, 100, 310, textColorSelected);
+            this->App->EscribirTexto("ttf.arcade", "Exit",  30, 100, 350, textColor);
+            break;
+         case 3:
+            this->App->EscribirTexto("ttf.arcade", "Play",  30, 100, 230, textColor);
+            this->App->EscribirTexto("ttf.arcade", "Select Pilot",  30, 100, 270, textColor);
+            this->App->EscribirTexto("ttf.arcade", "Historical Points",  30, 100, 310, textColor);
+            this->App->EscribirTexto("ttf.arcade", "Exit",  30, 100, 350, textColorSelected);
+            break;
+ 
+    }
 
 }
 
@@ -88,12 +106,40 @@ void PantallaMenu::DibujarEstrellas(void){
 void PantallaMenu::Init(void){
 
 	CrearEstrellas();
-	CrearOpciones();
-
+	
 }
 
 void PantallaMenu::EventHandler(void){
-	MoverEstrellas();
+ 
+	
+    MoverEstrellas();
+
+    if(this->isKeyActive[Ros::keyDown]){
+        if(this->CanProcessDown == true){
+            this->SelectedOption++;
+            this->CanProcessDown = false;
+        }
+    }else{
+        this->CanProcessDown = true;
+    }
+
+    if(this->isKeyActive[Ros::keyUp]){
+        if(this->CanProcessUp == true){
+            this->SelectedOption--;
+            this->CanProcessUp = false;
+        }
+    }else{
+        this->CanProcessUp = true;
+    }
+
+    if(this->SelectedOption > 3){
+        this->SelectedOption = 0;
+    }
+
+    if(this->SelectedOption < 0){
+        this->SelectedOption = 3;
+    }
+
 }
 
 void PantallaMenu::Render(void){
@@ -123,6 +169,10 @@ void PantallaMenu::OnWindowResize(void){
 }
 
 PantallaMenu::PantallaMenu(std::string pId, Ros::Application *pApp) : Pantalla(pId, pApp){
+
+    this->SelectedOption = 0;
+    this->CanProcessDown = true;
+    this->CanProcessUp = true;
 
 }
 

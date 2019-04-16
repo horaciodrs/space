@@ -18,7 +18,8 @@ namespace Ros{
             std::string getUrl(){return Url;}
             sf::Font* getFont(void){return Fuente;}
             void Draw(std::string, int size, int x, int y);
-            void Draw(std::string, int size, int x, int y, float angle);
+            void Draw(std::string, int size, int x, int y, float angle);        
+            void Draw(std::string, int size, int x, int y, float angle, sf::Color color);
             Font(std::string pId, std::string pUrl, sf::RenderWindow *pWindow);
             Font();
             ~Font();

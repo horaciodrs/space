@@ -9,7 +9,9 @@ class PantallaMenu : public Ros::Pantalla{
 
 	private:
 		ObjectManager<Ros::Object> Estrellas;
-		ObjectManager<Ros::Object> Opciones;
+        int SelectedOption;
+        bool CanProcessDown;
+        bool CanProcessUp;
 
 	public:
 
@@ -17,7 +19,6 @@ class PantallaMenu : public Ros::Pantalla{
 		void CrearEstrellas(void);
 		void DibujarEstrellas(void);
 
-		void CrearOpciones(void);
 		void DibujarOpciones(void);
 
 		void Init(void);

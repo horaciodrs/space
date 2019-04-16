@@ -38,6 +38,7 @@ namespace Ros{
 
 				//procesar los flags de las tecla presionadas.
 				procesarTeclasActivas(&event);
+                procesarTeclasUp(&event);
 				
 				if (event.type == sf::Event::Resized){
 					App->Window->setView(sf::View(sf::FloatRect(0.f, 0.f, static_cast<float>(App->Window->getSize().x),static_cast<float>(App->Window->getSize().y))));
@@ -105,13 +106,58 @@ namespace Ros{
 
 	}
 
+    void Pantalla::procesarTeclasUp(sf::Event *event){
+	
+        return;
+
+		if (event->type == sf::Event::KeyReleased && event->key.code == sf::Keyboard::Left) {
+			isKeyUp[keyLeft] = true;
+		}else{
+			isKeyUp[keyLeft] = false;
+        }
+		
+		if (event->type == sf::Event::KeyReleased && event->key.code == sf::Keyboard::Up) {
+			isKeyUp[keyUp] = true;
+		}else{
+			isKeyUp[keyUp] = false;
+        }
+		
+		if (event->type == sf::Event::KeyReleased && event->key.code == sf::Keyboard::Right) {
+			isKeyUp[keyRight] = true;
+		}else{
+			isKeyUp[keyRight] = false;
+        }
+		
+		if (event->type == sf::Event::KeyReleased && event->key.code == sf::Keyboard::Down) {
+			isKeyUp[keyDown] = true;
+		}else{
+			isKeyUp[keyDown] = false;
+        }
+		
+		if (event->type == sf::Event::KeyReleased && event->key.code == sf::Keyboard::Space) {
+			isKeyUp[keySpace] = true;
+		}else{
+			isKeyUp[keySpace] = false;
+        }
+
+	}
+
+
 	Pantalla::Pantalla(std::string pId, Application *pApp) : Id(pId), App(pApp){
-		isKeyActive[keyLeft]	= false;
+		
+        isKeyActive[keyLeft]	= false;
 		isKeyActive[keyUp]		= false;
 		isKeyActive[keyRight]	= false;
 		isKeyActive[keyDown]	= false;
 		isKeyActive[keySpace]	= false;
-	}
+
+        isKeyUp[keyLeft]	= false;
+		isKeyUp[keyUp]		= false;
+		isKeyUp[keyRight]	= false;
+		isKeyUp[keyDown]	= false;
+		isKeyUp[keySpace]	= false;
+
+    }
 
 	Pantalla::~Pantalla(){
 
