@@ -6,11 +6,11 @@
 #include "pantalla_menu.hpp"
 
 /*
+COMPILAR:
 g++ lib/*.cpp *.cpp -o game  -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio
 
-la idea es modificar esto para que el juego arranque mostrando
-Acá pantalla en donde se pueda elegir la opcion de jugar salir, una,
-elegir nave, etc.
+CLONAR UN BRACH:
+git clone -b Menu --single-branch https://github.com/horaciodrs/space.git
 
 */
 
