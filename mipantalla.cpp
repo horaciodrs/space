@@ -276,7 +276,7 @@ void MiPantalla::CrearEnemigos(void){
 }
 
 void MiPantalla::Init(void){
-
+  
 	Background = new Ros::Object("Background", App);
 	Background->setImage(App->GetImage("img.Level.Background"));
 	Background->setX(Background->getW()/2);
@@ -374,6 +374,15 @@ void MiPantalla::EventHandler(){
 	for(int i=0; i<Enemigos.size(); i++){
         Enemigos.Get(i)->EventHandler();
 	}
+
+	if (this->isKeyActive[Ros::keyEscape] == true){
+	    this->Running = false;
+        this->App->SetPantallaActiva("MenuScreen");
+        this->App->GetPantallaActiva()->Init();
+        this->App->GetPantallaActiva()->Run();
+
+	}
+
 
 }
 

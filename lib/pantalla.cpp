@@ -30,9 +30,8 @@ namespace Ros{
 
 	void Pantalla::Run(void){
 
-        std::cout << "ejecutando pantalla" << std::endl;
 		
-		while (App->Window->isOpen()){
+		while ((App->Window->isOpen()) &&  (this->Running == true)){
 			
 			sf::Event event;
 
@@ -56,22 +55,23 @@ namespace Ros{
 					App->Window->close();
 				}
 			
-				if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape) {
+				/*if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape) {
 					App->Window->close();
 				}
+                */
 				
 			}
 
 			
 			EventHandler();
 
-            std::cout << "Pasanndo al event handler" << std::endl;
 			
             App->Window->clear();
 			
 			Render();
 			
 			App->Window->display();
+ 
 
 		}
 
@@ -115,6 +115,12 @@ namespace Ros{
 			isKeyActive[keyEnter] = false;
 		}
 
+        if (event->type == sf::Event::KeyPressed && event->key.code == sf::Keyboard::Escape) {
+			isKeyActive[keyEscape] = true;
+		}else if (event->type == sf::Event::KeyReleased && event->key.code == sf::Keyboard::Escape) {
+			isKeyActive[keyEscape] = false;
+		}
+
 	}
 
     void Pantalla::procesarTeclasUp(sf::Event *event){
@@ -156,13 +162,15 @@ namespace Ros{
 
 	Pantalla::Pantalla(std::string pId, Application *pApp) : Id(pId), App(pApp){
 		
+        this->Running = true;
+
         isKeyActive[keyLeft]	= false;
 		isKeyActive[keyUp]		= false;
 		isKeyActive[keyRight]	= false;
 		isKeyActive[keyDown]	= false;
 		isKeyActive[keySpace]	= false;
         isKeyActive[keyEnter]	= false;
-
+        isKeyActive[keyEscape]	= false;
 
         isKeyUp[keyLeft]	= false;
 		isKeyUp[keyUp]		= false;

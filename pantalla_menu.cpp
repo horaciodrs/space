@@ -156,6 +156,7 @@ void PantallaMenu::EventHandler(void){
                 case 0:
                     this->App->SetPantallaActiva("MainScreen");
                     this->App->GetPantallaActiva()->Init();
+                    this->App->GetPantallaActiva()->setRunning(true);
                     this->App->GetPantallaActiva()->Run();
                     break;
                 case 3:
