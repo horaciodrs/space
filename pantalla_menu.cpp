@@ -105,8 +105,24 @@ void PantallaMenu::DibujarEstrellas(void){
 
 void PantallaMenu::Init(void){
 
-	CrearEstrellas();
+	this->SelectedOption = 0;
+    this->CanProcessDown = true;
+    this->CanProcessUp = true;
+    this->CanProcessOption = true;
+
+   
+    std::cout << "por crar estrellas" << std::endl;
+
+    CrearEstrellas();
 	
+    std::cout << "estrellas creadas" << std::endl;
+}
+
+void PantallaMenu::Salir(std::string pPantallaId){
+
+    this->Running = false;
+    this->App->SetPantallaActiva(pPantallaId);
+
 }
 
 void PantallaMenu::EventHandler(void){
@@ -154,13 +170,21 @@ void PantallaMenu::EventHandler(void){
             //procesar opcion elegida...
             switch(this->SelectedOption){
                 case 0:
-                    this->App->SetPantallaActiva("MainScreen");
-                    this->App->GetPantallaActiva()->Init();
-                    this->App->GetPantallaActiva()->setRunning(true);
-                    this->App->GetPantallaActiva()->Run();
+                    /*
+                     * Creo que para solucionar el problema se puede crear una funcion en cada
+                     * Pantalla que le de la orden de Salir:
+                     * EJ:
+                     * Pantalla.Salir("idNuevaPantalla");
+                     * Esta funcion recibiria como parametro la nueva pantalla que se debe mostrar
+                     * al finalizar la pantalla actual. Sino se pasa ningun parametro asumimos
+                     * que directamente hay que salir de la aplicación.
+                     * **/
+                    std::cout << "EJECUTANDO JUEGO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" << std::endl;
+                    this->Salir("MainScreen");
                     break;
                 case 3:
-                    this->App->GetRenderWindow()->close();
+                    this->Salir("");
+                    //this->App->GetRenderWindow()->close();
                     break; 
             }
 
@@ -199,6 +223,10 @@ void PantallaMenu::OnWindowResize(void){
 	}
 }
 
+void PantallaMenu::End(){
+    
+}
+
 PantallaMenu::PantallaMenu(std::string pId, Ros::Application *pApp) : Pantalla(pId, pApp){
 
     this->SelectedOption = 0;
@@ -209,5 +237,5 @@ PantallaMenu::PantallaMenu(std::string pId, Ros::Application *pApp) : Pantalla(p
 }
 
 PantallaMenu::~PantallaMenu(){
-
+    End();
 }

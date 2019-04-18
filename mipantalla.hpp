@@ -27,6 +27,7 @@ class MiPantalla : public Ros::Pantalla{
 		ObjectManager<Proyectil> DisparosEnemigo;
 		Ros::Object *Background;
 		Ros::Object *Lifebar;
+        bool CanProcessEscape;
 	public:
 	    friend class Player;
 	    friend class Enemigo;
@@ -49,7 +50,9 @@ class MiPantalla : public Ros::Pantalla{
         void Init(void);
 		void Render(void);
 		void EventHandler();
+        void Salir(std::string pPantallaId);
 		void OnWindowResize(void);
+        void End(void);
 		MiPantalla(std::string pId, Ros::Application *pApp);
 		~MiPantalla();
 };

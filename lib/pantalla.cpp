@@ -28,10 +28,29 @@ namespace Ros{
 		//los eventos de manera personalizada...
 	}
 
+    void Pantalla::End(){
+        //esta funcion se debe ejecutar cuando termina la ejecución de la pantalla.
+		//esta funcion es virtual, por lo cual puede ser
+		//redefinida en la clase hija para procesar
+		//los eventos de manera personalizada...
+    }
+
+    void Pantalla::Salir(std::string pPantallaId){
+        //esta funcion debe hacer que la pantalla salga de la funcion Run.
+        //Tambien debe indicar la proxima pantalla a cargar.
+        //Sino se especifica una pantalla, entonces la aplicación terminará.
+		//esta funcion es virtual, por lo cual puede ser
+		//redefinida en la clase hija para procesar
+		//los eventos de manera personalizada...
+    }
+
 	void Pantalla::Run(void){
 
+        ResetKeys();
+
+        Running = true;
 		
-		while ((App->Window->isOpen()) &&  (this->Running == true)){
+		while ((App->Window->isOpen()) &&  (Running == true)){
 			
 			sf::Event event;
 
@@ -55,11 +74,6 @@ namespace Ros{
 					App->Window->close();
 				}
 			
-				/*if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape) {
-					App->Window->close();
-				}
-                */
-				
 			}
 
 			
@@ -68,7 +82,9 @@ namespace Ros{
 			
             App->Window->clear();
 			
-			Render();
+            if(Running == true){
+			    Render();
+            }
 			
 			App->Window->display();
  
@@ -159,11 +175,7 @@ namespace Ros{
 
 	}
 
-
-	Pantalla::Pantalla(std::string pId, Application *pApp) : Id(pId), App(pApp){
-		
-        this->Running = true;
-
+    void Pantalla::ResetKeys(void){
         isKeyActive[keyLeft]	= false;
 		isKeyActive[keyUp]		= false;
 		isKeyActive[keyRight]	= false;
@@ -171,6 +183,11 @@ namespace Ros{
 		isKeyActive[keySpace]	= false;
         isKeyActive[keyEnter]	= false;
         isKeyActive[keyEscape]	= false;
+    }
+
+	Pantalla::Pantalla(std::string pId, Application *pApp) : Id(pId), App(pApp){
+
+        ResetKeys();
 
         isKeyUp[keyLeft]	= false;
 		isKeyUp[keyUp]		= false;

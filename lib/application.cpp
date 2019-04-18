@@ -38,7 +38,22 @@ namespace Ros{
 
 	void Application::SetPantallaActiva(std::string pId){
 
-		PantallaActiva = Pantallas.Get(pId);
+        if(pId == ""){
+            
+            if(PantallaActiva != NULL){
+                PantallaActiva->End();
+            }
+
+            PantallaActiva = NULL;
+
+        }else{
+            
+            if(PantallaActiva != NULL){
+                PantallaActiva->End();
+            }
+		    
+            PantallaActiva = Pantallas.Get(pId);
+        }
 
 	}
 
@@ -86,10 +101,13 @@ namespace Ros{
 
 	void Application::Run(void){
 
-		if(PantallaActiva != NULL){
+        while(PantallaActiva != NULL){
+
             PantallaActiva->Init();
-			PantallaActiva->Run();
-		}
+			
+            PantallaActiva->Run();
+		    
+        }
 
 	}
 

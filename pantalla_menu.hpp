@@ -25,7 +25,9 @@ class PantallaMenu : public Ros::Pantalla{
 		void Init(void);
 		void Render(void);
 		void EventHandler(void);
+        void Salir(std::string pPantallaId);
 		void OnWindowResize(void);
+        void End(void);
 		PantallaMenu(std::string pId, Ros::Application *pApp);
 		~PantallaMenu();
 

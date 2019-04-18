@@ -16,6 +16,7 @@ namespace Ros{
 			std::string Id;
 			Ros::Application *App;
             bool Running;
+            void ResetKeys(void);
 		public:
 			bool isKeyActive[7];
             bool isKeyUp[6];
@@ -26,8 +27,10 @@ namespace Ros{
             virtual void Init(void);
 			virtual void Render(void);
 			virtual void Run(void);
+            virtual void Salir(std::string pPantallaId);
 			virtual void EventHandler();
 			virtual void OnWindowResize(void);
+            virtual void End(void);
 			virtual ~Pantalla();
 			Pantalla(std::string pId, Ros::Application *pApp);
 
