@@ -78,7 +78,31 @@ int main(int argc, char const** argv){
 	App->AgregarImagen("img.lifebar95", "assets/lifebar95.png");
 	App->AgregarImagen("img.lifebar100", "assets/lifebar100.png");
 
-	App->AgregarImagen("img.Opciones.Jugar", "assets/lifebar100.png");
+
+	App->AgregarImagen("img.weaponbar100", "assets/weaponbar100.png");
+	App->AgregarImagen("img.weaponbar95", "assets/weaponbar95.png");
+	App->AgregarImagen("img.weaponbar90", "assets/weaponbar90.png");
+	App->AgregarImagen("img.weaponbar85", "assets/weaponbar85.png");
+	App->AgregarImagen("img.weaponbar80", "assets/weaponbar80.png");
+	App->AgregarImagen("img.weaponbar75", "assets/weaponbar75.png");
+	App->AgregarImagen("img.weaponbar70", "assets/weaponbar70.png");
+	App->AgregarImagen("img.weaponbar65", "assets/weaponbar65.png");
+	App->AgregarImagen("img.weaponbar60", "assets/weaponbar60.png");
+	App->AgregarImagen("img.weaponbar55", "assets/weaponbar55.png");
+	App->AgregarImagen("img.weaponbar50", "assets/weaponbar50.png");
+	App->AgregarImagen("img.weaponbar45", "assets/weaponbar45.png");
+	App->AgregarImagen("img.weaponbar40", "assets/weaponbar40.png");
+	App->AgregarImagen("img.weaponbar35", "assets/weaponbar35.png");
+	App->AgregarImagen("img.weaponbar30", "assets/weaponbar30.png");
+	App->AgregarImagen("img.weaponbar25", "assets/weaponbar25.png");
+	App->AgregarImagen("img.weaponbar20", "assets/weaponbar20.png");
+	App->AgregarImagen("img.weaponbar15", "assets/weaponbar15.png");
+	App->AgregarImagen("img.weaponbar10", "assets/weaponbar10.png");
+	App->AgregarImagen("img.weaponbar5", "assets/weaponbar5.png");
+	App->AgregarImagen("img.weaponbar0", "assets/weaponbar0.png");
+
+
+	//App->AgregarImagen("img.Opciones.Jugar", "assets/lifebar100.png");
 
 	App->AgregarFuente("ttf.arcade", "assets/ARCADE.TTF");
 	App->AgregarFuente("ttf.zerovelo", "assets/zerovelo.ttf");

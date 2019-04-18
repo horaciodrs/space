@@ -10,6 +10,7 @@ class Player : public Ros::Object{
 		bool CanShoot;
 		bool Vivo;
 		int TipoDisparo;
+        int Municiones;
 		int Life;
 		ObjectManager<Ros::Object> Disparos;
 		void Disparar(void);
@@ -21,6 +22,7 @@ class Player : public Ros::Object{
     public:
     	void AddLife(int);
     	int GetLife(void);
+        int GetMuniciones(void);
     	virtual void Draw(void);
 		virtual void EventHandler();
         Player(std::string pId);

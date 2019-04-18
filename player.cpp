@@ -28,6 +28,10 @@ int Player::GetLife(void){
 	return Life;
 }
 
+int Player::GetMuniciones(void){
+    return Municiones;
+}
+
 void Player::BuscarPremio(void){
 
     MiPantalla *Pantalla = static_cast<MiPantalla*>(this->App->GetPantallaActiva());
@@ -38,6 +42,7 @@ void Player::BuscarPremio(void){
             Pantalla->PremioDisparo1.DeleteById(itemPremio->getId());
             this->App->PlaySound("sound.premio", 100, false);
             TipoDisparo = TIPO_PREMIO_DISPARO2;
+            Municiones = 100;
             break;
         }
     }
@@ -48,6 +53,7 @@ void Player::BuscarPremio(void){
             Pantalla->PremioDisparo2.DeleteById(itemPremio->getId());
             this->App->PlaySound("sound.premio", 100, false);
             TipoDisparo = TIPO_PREMIO_DISPARO3;
+            Municiones = 100;
             break;
         }
     }
@@ -58,6 +64,7 @@ void Player::BuscarPremio(void){
             Pantalla->PremioDisparoMisil.DeleteById(itemPremio->getId());
             this->App->PlaySound("sound.premio", 100, false);
             TipoDisparo = TIPO_PREMIO_DISPARO_MISIL;
+            Municiones = 100;
             break;
         }
     }
@@ -84,14 +91,22 @@ void Player::Disparar(void){
             break;
         case TIPO_PREMIO_DISPARO2:
             itemDisparo->setImage(this->App->GetImage("img.disparo.2"));
+            Municiones-=5;
             break;
         case TIPO_PREMIO_DISPARO3:
             itemDisparo->setImage(this->App->GetImage("img.disparo.3"));
+            Municiones-=5;
             break;
         case TIPO_PREMIO_DISPARO_MISIL:
             itemDisparo->setImage(this->App->GetImage("img.disparo.4"));
+            Municiones-=5;
             break;
 	}
+
+    if(Municiones < 0){
+        TipoDisparo = TIPO_PREMIO_DISPARO1;
+        Municiones = 0;
+    }
 
 	itemDisparo->setApplication(this->App);
 
@@ -314,6 +329,7 @@ Player::Player(std::string pId) : Ros::Object(pId){
 	Vivo = true;
 	TipoDisparo = TIPO_PREMIO_DISPARO1;
 	Life = 100;
+    Municiones = 0;
 }
 
 Player::Player(std::string pId, Ros::Application *pApp) : Ros::Object(pId, pApp){
@@ -322,6 +338,7 @@ Player::Player(std::string pId, Ros::Application *pApp) : Ros::Object(pId, pApp)
 	Vivo = true;
 	TipoDisparo = TIPO_PREMIO_DISPARO1;
 	Life = 100;
+    Municiones = 0;
 }
 
 Player::~Player(){

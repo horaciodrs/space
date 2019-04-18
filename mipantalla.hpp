@@ -27,6 +27,7 @@ class MiPantalla : public Ros::Pantalla{
 		ObjectManager<Proyectil> DisparosEnemigo;
 		Ros::Object *Background;
 		Ros::Object *Lifebar;
+        Ros::Object *WeaponBar;
         bool CanProcessEscape;
 	public:
 	    friend class Player;
@@ -42,6 +43,7 @@ class MiPantalla : public Ros::Pantalla{
 		void CrearDisparoEnemigo(int x, int y);
 		void DibujarEstrellas(void);
 		void DibujarLife(void);
+        void DibujarWeaponBar(void);
 		void DibujarPremios(void);
 		void DibujarDisparoEnemigo(void);
 		void BorrarExplosionesInactivas(void);

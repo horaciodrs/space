@@ -212,6 +212,14 @@ void MiPantalla::DibujarLife(void){
 
 }
 
+void MiPantalla::DibujarWeaponBar(void){
+
+    
+    WeaponBar->setImage(App->GetImage("img.weaponbar" + std::to_string(Nave->GetMuniciones())));
+//    WeaponBar->setImage(App->GetImage("img.weaponbar100"));
+
+}
+
 void MiPantalla::CrearEstrellas(void){
 
 	bool tipoEstrella = false;
@@ -289,6 +297,12 @@ void MiPantalla::Init(void){
     Lifebar->setX(280);
     Lifebar->setY(28);
 
+    WeaponBar = new Ros::Object("WeaponBar", App);
+    WeaponBar->setImage(App->GetImage("img.weaponbar100"));
+    WeaponBar->setX(248);
+    WeaponBar->setY(App->GetScreenHeight() - 16);
+
+
 	CrearEstrellas();
 
     Nave = new Player("Nave.Player1", App);
@@ -305,10 +319,12 @@ void MiPantalla::Render(void){
 
 	Background->Draw();
     Lifebar->Draw();
+    WeaponBar->Draw();
 
 	DibujarEstrellas();
 	DibujarPremios();
     DibujarLife();
+    DibujarWeaponBar();
     DibujarDisparoEnemigo();
 
 	Nave->Draw();
@@ -401,6 +417,7 @@ void MiPantalla::End(){
 	delete Nave;
 	delete Background;
     delete Lifebar;
+    delete WeaponBar;
 }
 
 MiPantalla::MiPantalla(std::string pId, Ros::Application *pApp) : Pantalla(pId, pApp){
