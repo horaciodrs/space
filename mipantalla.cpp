@@ -277,6 +277,8 @@ void MiPantalla::CrearEnemigos(void){
 
 void MiPantalla::Init(void){
 
+    Puntos = 0;
+  
 	Background = new Ros::Object("Background", App);
 	Background->setImage(App->GetImage("img.Level.Background"));
 	Background->setX(Background->getW()/2);
@@ -361,6 +363,14 @@ void MiPantalla::OnWindowResize(void){
 
 }
 
+void MiPantalla::Salir(std::string pPantallaId){
+
+    this->Running = false;
+    this->App->SetPantallaActiva(pPantallaId);
+
+}
+
+
 void MiPantalla::EventHandler(){
 
 	//sf::RenderWindow *Window = App->GetRenderWindow();
@@ -375,16 +385,29 @@ void MiPantalla::EventHandler(){
         Enemigos.Get(i)->EventHandler();
 	}
 
+	if (this->isKeyActive[Ros::keyEscape] == true){
+        if(this->CanProcessEscape == true){
+	        this->Salir("MenuScreen");
+            this->CanProcessEscape = false;
+        }
+	}else{
+        this->CanProcessEscape = true;
+    }
+
+
+}
+
+void MiPantalla::End(){
+	delete Nave;
+	delete Background;
+    delete Lifebar;
 }
 
 MiPantalla::MiPantalla(std::string pId, Ros::Application *pApp) : Pantalla(pId, pApp){
     Puntos = 0;
+    CanProcessEscape = true;
 }
 
 MiPantalla::~MiPantalla(){
-
-	delete Nave;
-	delete Background;
-    delete Lifebar;
-
+	End();
 }

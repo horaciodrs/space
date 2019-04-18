@@ -28,9 +28,29 @@ namespace Ros{
 		//los eventos de manera personalizada...
 	}
 
+    void Pantalla::End(){
+        //esta funcion se debe ejecutar cuando termina la ejecución de la pantalla.
+		//esta funcion es virtual, por lo cual puede ser
+		//redefinida en la clase hija para procesar
+		//los eventos de manera personalizada...
+    }
+
+    void Pantalla::Salir(std::string pPantallaId){
+        //esta funcion debe hacer que la pantalla salga de la funcion Run.
+        //Tambien debe indicar la proxima pantalla a cargar.
+        //Sino se especifica una pantalla, entonces la aplicación terminará.
+		//esta funcion es virtual, por lo cual puede ser
+		//redefinida en la clase hija para procesar
+		//los eventos de manera personalizada...
+    }
+
 	void Pantalla::Run(void){
+
+        ResetKeys();
+
+        Running = true;
 		
-		while (App->Window->isOpen()){
+		while ((App->Window->isOpen()) &&  (Running == true)){
 			
 			sf::Event event;
 
@@ -38,6 +58,7 @@ namespace Ros{
 
 				//procesar los flags de las tecla presionadas.
 				procesarTeclasActivas(&event);
+                procesarTeclasUp(&event);
 				
 				if (event.type == sf::Event::Resized){
 					App->Window->setView(sf::View(sf::FloatRect(0.f, 0.f, static_cast<float>(App->Window->getSize().x),static_cast<float>(App->Window->getSize().y))));
@@ -53,19 +74,20 @@ namespace Ros{
 					App->Window->close();
 				}
 			
-				if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape) {
-					App->Window->close();
-				}
-				
 			}
+
 			
 			EventHandler();
 
-			App->Window->clear();
 			
-			Render();
+            App->Window->clear();
+			
+            if(Running == true){
+			    Render();
+            }
 			
 			App->Window->display();
+ 
 
 		}
 
@@ -102,16 +124,78 @@ namespace Ros{
 		}else if (event->type == sf::Event::KeyReleased && event->key.code == sf::Keyboard::Space) {
 			isKeyActive[keySpace] = false;
 		}
+        
+        if (event->type == sf::Event::KeyPressed && event->key.code == sf::Keyboard::Return) {
+			isKeyActive[keyEnter] = true;
+		}else if (event->type == sf::Event::KeyReleased && event->key.code == sf::Keyboard::Return) {
+			isKeyActive[keyEnter] = false;
+		}
+
+        if (event->type == sf::Event::KeyPressed && event->key.code == sf::Keyboard::Escape) {
+			isKeyActive[keyEscape] = true;
+		}else if (event->type == sf::Event::KeyReleased && event->key.code == sf::Keyboard::Escape) {
+			isKeyActive[keyEscape] = false;
+		}
 
 	}
 
-	Pantalla::Pantalla(std::string pId, Application *pApp) : Id(pId), App(pApp){
-		isKeyActive[keyLeft]	= false;
+    void Pantalla::procesarTeclasUp(sf::Event *event){
+	
+        return;
+
+		if (event->type == sf::Event::KeyReleased && event->key.code == sf::Keyboard::Left) {
+			isKeyUp[keyLeft] = true;
+		}else{
+			isKeyUp[keyLeft] = false;
+        }
+		
+		if (event->type == sf::Event::KeyReleased && event->key.code == sf::Keyboard::Up) {
+			isKeyUp[keyUp] = true;
+		}else{
+			isKeyUp[keyUp] = false;
+        }
+		
+		if (event->type == sf::Event::KeyReleased && event->key.code == sf::Keyboard::Right) {
+			isKeyUp[keyRight] = true;
+		}else{
+			isKeyUp[keyRight] = false;
+        }
+		
+		if (event->type == sf::Event::KeyReleased && event->key.code == sf::Keyboard::Down) {
+			isKeyUp[keyDown] = true;
+		}else{
+			isKeyUp[keyDown] = false;
+        }
+		
+		if (event->type == sf::Event::KeyReleased && event->key.code == sf::Keyboard::Space) {
+			isKeyUp[keySpace] = true;
+		}else{
+			isKeyUp[keySpace] = false;
+        }
+
+	}
+
+    void Pantalla::ResetKeys(void){
+        isKeyActive[keyLeft]	= false;
 		isKeyActive[keyUp]		= false;
 		isKeyActive[keyRight]	= false;
 		isKeyActive[keyDown]	= false;
 		isKeyActive[keySpace]	= false;
-	}
+        isKeyActive[keyEnter]	= false;
+        isKeyActive[keyEscape]	= false;
+    }
+
+	Pantalla::Pantalla(std::string pId, Application *pApp) : Id(pId), App(pApp){
+
+        ResetKeys();
+
+        isKeyUp[keyLeft]	= false;
+		isKeyUp[keyUp]		= false;
+		isKeyUp[keyRight]	= false;
+		isKeyUp[keyDown]	= false;
+		isKeyUp[keySpace]	= false;
+
+    }
 
 	Pantalla::~Pantalla(){
 

@@ -20,6 +20,14 @@ namespace Ros{
 
 	}
 
+    void Application::EscribirTexto(std::string fontId, std::string str, int size, int x, int y, sf::Color color){
+
+		Ros::Font *Fnt = this->Fonts.Get(fontId);
+
+		Fnt->Draw(str, size, x, y, 0, color);
+
+	}
+
 	void Application::EscribirTexto(std::string fontId, std::string str, int size, int x, int y){
 
 		Ros::Font *Fnt = this->Fonts.Get(fontId);
@@ -30,7 +38,22 @@ namespace Ros{
 
 	void Application::SetPantallaActiva(std::string pId){
 
-		PantallaActiva = Pantallas.Get(pId);
+        if(pId == ""){
+            
+            if(PantallaActiva != NULL){
+                PantallaActiva->End();
+            }
+
+            PantallaActiva = NULL;
+
+        }else{
+            
+            if(PantallaActiva != NULL){
+                PantallaActiva->End();
+            }
+		    
+            PantallaActiva = Pantallas.Get(pId);
+        }
 
 	}
 
@@ -78,10 +101,13 @@ namespace Ros{
 
 	void Application::Run(void){
 
-		if(PantallaActiva != NULL){
+        while(PantallaActiva != NULL){
+
             PantallaActiva->Init();
-			PantallaActiva->Run();
-		}
+			
+            PantallaActiva->Run();
+		    
+        }
 
 	}
 
