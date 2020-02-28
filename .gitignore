@@ -1,2 +1,5 @@
 game
-*.swp
+.vscode/
+*.swpgit
+*~
+

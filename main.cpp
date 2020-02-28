@@ -6,11 +6,22 @@
 #include "pantalla_menu.hpp"
 
 /*
-COMPILAR:
-g++ lib/*.cpp *.cpp -o game  -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio
+	COMPILAR:
+	=========
+	g++ lib/*.cpp *.cpp -o game  -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio
 
-CLONAR UN BRACH:
-git clone -b Menu --single-branch https://github.com/horaciodrs/space.git
+	
+	CLONAR EL PROYECTO POR PRIMERA VEZ
+	==================================
+	git clone  https://github.com/horaciodrs/space.git
+	git config --global user.name "Horacio Daniel Ros"
+	git config --global user.email "horaciodrs@gmail.com"
+	sudo apt install build-essential libsfml-dev 
+
+	
+	CLONAR UN BRACH:
+	================
+	git clone -b Menu --single-branch https://github.com/horaciodrs/space.git
 
 */
 
