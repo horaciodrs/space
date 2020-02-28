@@ -18,6 +18,12 @@
 	git config --global user.email "horaciodrs@gmail.com"
 	sudo apt install build-essential libsfml-dev 
 
+	SUBIR CAMBIOS
+	=============
+	git add .
+	git commit -m "Mensaje...."
+	git push -u origin master
+
 	
 	CLONAR UN BRACH:
 	================
