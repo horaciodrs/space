@@ -397,6 +397,22 @@ void MiPantalla::EventHandler(){
 
 	Nave->EventHandler();
 
+    if(Nave->GetLife() == 0){
+
+        Ros::Animation *itemExplosion;
+
+	    itemExplosion = this->Explosiones.Get("explosion.Nave.GameOver");
+
+        if(itemExplosion){
+
+            if( itemExplosion->isRuning() == false){
+                this->Salir("MenuScreen");
+            }
+
+        }
+
+    }
+
 	for(int i=0; i<Enemigos.size(); i++){
         Enemigos.Get(i)->EventHandler();
 	}

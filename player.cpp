@@ -236,7 +236,7 @@ void Player::CrearExplosion(int x, int y){
 
 	MiPantalla *Pantalla = static_cast<MiPantalla*>(this->App->GetPantallaActiva());
 
-	Ros::Animation itemExplosion("explosion", 96, this->App);
+	Ros::Animation itemExplosion("explosion.Nave.GameOver", 96, this->App);
 
 	itemExplosion.setImage(this->App->GetImage("img.explosion"));
 	itemExplosion.setX(x);
