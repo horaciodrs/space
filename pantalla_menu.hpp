@@ -10,6 +10,7 @@ class PantallaMenu : public Ros::Pantalla{
 	private:
 		ObjectManager<Ros::Object> Estrellas;
         int SelectedOption;
+		int SelectedPilot;
         bool CanProcessDown;
         bool CanProcessUp;
         bool CanProcessOption;
@@ -21,6 +22,10 @@ class PantallaMenu : public Ros::Pantalla{
 		void DibujarEstrellas(void);
 
 		void DibujarOpciones(void);
+
+		void setSelectedPilot(int pilot){SelectedPilot = pilot;}
+
+		int getSelectedPilot(){return SelectedPilot;}
 
 		void Init(void);
 		void Render(void);

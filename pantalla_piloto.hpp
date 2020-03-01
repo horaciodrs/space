@@ -5,14 +5,17 @@
 #include "lib/object.hpp"
 #include "lib/pantalla.hpp"
 
+#include "pantalla_menu.hpp"
+
 class PantallaPiloto : public Ros::Pantalla{
 
     private:
         ObjectManager<Ros::Object> Estrellas;
         int SelectedOption;
         bool CanProcessEscape;
-        bool CanProcessDown;
-        bool CanProcessUp;
+        bool CanProcessLeft;
+        bool CanProcessRight;
+        bool CanProcessEnter;
 
         Ros::Object *Piloto1;
         Ros::Object *Piloto2;
@@ -29,7 +32,7 @@ class PantallaPiloto : public Ros::Pantalla{
         void Init(void);
         void Render(void);
         void EventHandler(void);
-        void Salir(std::string pPantallaId);
+        void Salir(std::string pPantallaId, int pSelectedPilot);
         void OnWindowResize(void);
         void End(void);
         PantallaPiloto(std::string pId, Ros::Application *pApp);

@@ -7,7 +7,6 @@
 
 const int MAX_ESTRELLAS = 200;
 
-
 void PantallaPiloto::CrearEstrellas(void){
 
 	bool tipoEstrella = false;
@@ -98,10 +97,16 @@ void PantallaPiloto::Init(void){
 	
 }
 
-void PantallaPiloto::Salir(std::string pPantallaId){
+void PantallaPiloto::Salir(std::string pPantallaId, int pSelectedPilot){
+
+    PantallaMenu *pantallaMenu;
 
     this->Running = false;
     this->App->SetPantallaActiva(pPantallaId);
+
+    pantallaMenu =  static_cast<PantallaMenu*>(this->App->GetPantallaActiva());
+
+    pantallaMenu->setSelectedPilot(pSelectedPilot);
 
 }
 
@@ -112,24 +117,24 @@ void PantallaPiloto::EventHandler(void){
 
     //Procesa el evento tecla DOWN.
     
-    if(this->isKeyActive[Ros::keyDown]){
-        if(this->CanProcessDown == true){
-            this->SelectedOption++;
-            this->CanProcessDown = false;
+    if(this->isKeyActive[Ros::keyLeft]){
+        if(this->CanProcessLeft == true){
+            this->SelectedOption--;
+            this->CanProcessLeft = false;
         }
     }else{
-        this->CanProcessDown = true;
+        this->CanProcessLeft = true;
     }
 
     //Procesa el evento tecla UP.
 
-    if(this->isKeyActive[Ros::keyUp]){
-        if(this->CanProcessUp == true){
-            this->SelectedOption--;
-            this->CanProcessUp = false;
+    if(this->isKeyActive[Ros::keyRight]){
+        if(this->CanProcessRight == true){
+            this->SelectedOption++;
+            this->CanProcessRight = false;
         }
     }else{
-        this->CanProcessUp = true;
+        this->CanProcessRight = true;
     }
 
     if(this->SelectedOption > 3){
@@ -139,6 +144,7 @@ void PantallaPiloto::EventHandler(void){
     if(this->SelectedOption < 0){
         this->SelectedOption = 3;
     }
+
 
     switch(this->SelectedOption){
         case 0:
@@ -159,11 +165,22 @@ void PantallaPiloto::EventHandler(void){
     
     if(this->isKeyActive[Ros::keyEscape]){
         if(this->CanProcessEscape == true){
-            this->Salir("MenuScreen");
+            this->Salir("MenuScreen", this->SelectedOption);
             this->CanProcessEscape = false;
         }
     }else{
         this->CanProcessEscape = true;
+    }
+
+    //Procesa el evento tecla ENTER.
+    
+    if(this->isKeyActive[Ros::keyEnter]){
+        if(this->CanProcessEnter == true){
+            this->Salir("MenuScreen", this->SelectedOption);
+            this->CanProcessEnter = false;
+        }
+    }else{
+        this->CanProcessEnter = true;
     }
 
 }
@@ -207,8 +224,9 @@ void PantallaPiloto::End(){
 PantallaPiloto::PantallaPiloto(std::string pId, Ros::Application *pApp) : Pantalla(pId, pApp){
 
     this->CanProcessEscape = true;
-    this->CanProcessDown = true;
-    this->CanProcessUp = true;
+    this->CanProcessLeft = true;
+    this->CanProcessRight = true;
+    this->CanProcessEnter = true;
     this->SelectedOption = 0;
 
 }
