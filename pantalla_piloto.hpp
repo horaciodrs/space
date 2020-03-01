@@ -9,7 +9,17 @@ class PantallaPiloto : public Ros::Pantalla{
 
     private:
         ObjectManager<Ros::Object> Estrellas;
+        int SelectedOption;
         bool CanProcessEscape;
+        bool CanProcessDown;
+        bool CanProcessUp;
+
+        Ros::Object *Piloto1;
+        Ros::Object *Piloto2;
+        Ros::Object *Piloto3;
+        Ros::Object *Piloto4;
+        Ros::Object *PilotoSelectionLight;
+
     public:
 
         void MoverEstrellas(void);

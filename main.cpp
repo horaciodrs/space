@@ -123,6 +123,12 @@ int main(int argc, char const** argv){
 	App->AgregarImagen("img.weaponbar5", "assets/weaponbar5.png");
 	App->AgregarImagen("img.weaponbar0", "assets/weaponbar0.png");
 
+	App->AgregarImagen("img.piloto0", "assets/piloto1circle.png");
+	App->AgregarImagen("img.piloto1", "assets/piloto2circle.png");
+	App->AgregarImagen("img.piloto2", "assets/piloto3circle.png");
+	App->AgregarImagen("img.piloto3", "assets/piloto4circle.png");
+	App->AgregarImagen("img.piloto.selection.light", "assets/piloto_selection_light.png");
+
 
 	//App->AgregarImagen("img.Opciones.Jugar", "assets/lifebar100.png");
 
