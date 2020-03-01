@@ -8,12 +8,18 @@
 class PantallaPiloto : public Ros::Pantalla{
 
     private:
-        int SelectedOption;
+        ObjectManager<Ros::Object> Estrellas;
+        bool CanProcessEscape;
     public:
+
+        void MoverEstrellas(void);
+		void CrearEstrellas(void);
+		void DibujarEstrellas(void);
+
         void Init(void);
         void Render(void);
         void EventHandler(void);
-        void Salir(std:string pPantallaId);
+        void Salir(std::string pPantallaId);
         void OnWindowResize(void);
         void End(void);
         PantallaPiloto(std::string pId, Ros::Application *pApp);

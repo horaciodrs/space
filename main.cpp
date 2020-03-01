@@ -4,6 +4,7 @@
 #include "lib/application.hpp"
 #include "mipantalla.hpp"
 #include "pantalla_menu.hpp"
+#include "pantalla_piloto.hpp"
 
 /*
 	COMPILAR:
@@ -42,6 +43,10 @@ int main(int argc, char const** argv){
 	//Creo la pantalla del Menu...
 	PantallaMenu *MenuScreen = new PantallaMenu("MenuScreen", App);
 	Ros::Pantalla *refMenuScreen = MenuScreen;
+
+	//Creo la pantalla de Seleccion del Piloto...
+	PantallaPiloto *PilotoScreen = new PantallaPiloto("PilotoScreen", App);
+	Ros::Pantalla *refPilotoScreen = PilotoScreen;
 
 	App->AgregarSonido("sound.Music", "assets/music.ogg");
 	App->AgregarSonido("sound.disparo", "assets/disparo.ogg");
@@ -126,6 +131,7 @@ int main(int argc, char const** argv){
 
 	App->AgregarPantalla(refMainScreen);
 	App->AgregarPantalla(refMenuScreen);
+	App->AgregarPantalla(refPilotoScreen);
 	App->SetPantallaActiva("MenuScreen");
 
 	App->Init();

@@ -168,6 +168,9 @@ void PantallaMenu::EventHandler(void){
                 case 0:
                     this->Salir("MainScreen");
                     break;
+                case 1:
+                    this->Salir("PilotoScreen");
+                    break;
                 case 3:
                     this->Salir("");
                     break; 
