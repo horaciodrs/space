@@ -9,7 +9,8 @@
 /*
 	COMPILAR:
 	=========
-	g++ lib/*.cpp *.cpp -o game  -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio
+	(LINUX) g++ lib/*.cpp *.cpp -o game  -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio
+	(WINDOWS) g++ -LC:\SFML-2.5.1\lib lib/*.cpp *.cpp -o game  -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio
 
 	
 	CLONAR EL PROYECTO POR PRIMERA VEZ
@@ -18,7 +19,7 @@
 	git config --global user.name "Horacio Daniel Ros"
 	git config --global user.email "horaciodrs@gmail.com"
 	sudo apt install build-essential libsfml-dev 
-
+ 
 	SUBIR CAMBIOS
 	=============
 	git add .

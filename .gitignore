@@ -1,5 +1,4 @@
-game
-.vscode/
+game*
 *.swpgit
 *~
 
