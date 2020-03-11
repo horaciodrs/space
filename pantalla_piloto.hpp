@@ -7,6 +7,7 @@
 
 #include "pantalla_menu.hpp"
 
+
 class PantallaPiloto : public Ros::Pantalla{
 
     private:
@@ -22,6 +23,8 @@ class PantallaPiloto : public Ros::Pantalla{
         Ros::Object *Piloto3;
         Ros::Object *Piloto4;
         Ros::Object *PilotoSelectionLight;
+
+        PilotoSkills skillPiloto[4];
 
     public:
 

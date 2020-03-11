@@ -106,7 +106,7 @@ void PantallaPiloto::Salir(std::string pPantallaId, int pSelectedPilot){
 
     pantallaMenu =  static_cast<PantallaMenu*>(this->App->GetPantallaActiva());
 
-    pantallaMenu->setSelectedPilot(pSelectedPilot);
+    pantallaMenu->setSelectedPilot(pSelectedPilot, this->skillPiloto[pSelectedPilot]);
 
 }
 
@@ -228,6 +228,22 @@ PantallaPiloto::PantallaPiloto(std::string pId, Ros::Application *pApp) : Pantal
     this->CanProcessRight = true;
     this->CanProcessEnter = true;
     this->SelectedOption = 0;
+
+    this->skillPiloto[0].Escudo = 0.8;
+    this->skillPiloto[0].Velocidad = 15;
+    this->skillPiloto[0].Power = 1.4;
+
+    this->skillPiloto[1].Escudo = 0.5;
+    this->skillPiloto[1].Velocidad = 10;
+    this->skillPiloto[1].Power = 0.8;
+
+    this->skillPiloto[2].Escudo = 0.75;
+    this->skillPiloto[2].Velocidad = 13;
+    this->skillPiloto[2].Power = 1.1;
+
+    this->skillPiloto[3].Escudo = 0.4;
+    this->skillPiloto[3].Velocidad = 9;
+    this->skillPiloto[3].Power = 0.7;
 
 }
 

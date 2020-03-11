@@ -5,12 +5,19 @@
 #include "lib/object.hpp"
 #include "lib/pantalla.hpp"
 
+struct PilotoSkills{
+    int Velocidad;     //Velocidad de la nave.
+    float Escudo;      //Porcentaje de daño que recibe la nave soportar un ataque.
+    float Power;       //Porcentaje de daño que recibe un enemigo al soportar un ataque del piloto.
+};
+
 class PantallaMenu : public Ros::Pantalla{
 
 	private:
 		ObjectManager<Ros::Object> Estrellas;
         int SelectedOption;
 		int SelectedPilot;
+		PilotoSkills SelectedPilotSkills;
         bool CanProcessDown;
         bool CanProcessUp;
         bool CanProcessOption;
@@ -23,7 +30,7 @@ class PantallaMenu : public Ros::Pantalla{
 
 		void DibujarOpciones(void);
 
-		void setSelectedPilot(int pilot){SelectedPilot = pilot;}
+		void setSelectedPilot(int pilot, PilotoSkills skills){SelectedPilot = pilot; SelectedPilotSkills = skills;}
 
 		int getSelectedPilot(){return SelectedPilot;}
 
