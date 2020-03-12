@@ -149,6 +149,7 @@ int main(int argc, char const** argv){
 
 	delete MainScreen;
 	delete MenuScreen;
+	delete PilotoScreen;
 	delete App;
 
 	return EXIT_SUCCESS;
