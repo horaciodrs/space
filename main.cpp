@@ -6,6 +6,9 @@
 #include "pantalla_menu.hpp"
 #include "pantalla_piloto.hpp"
 
+#include "lib/object_manager.hpp"
+#include "piloto.hpp"
+
 /*
 	COMPILAR:
 	=========
@@ -33,6 +36,8 @@
 
 */
 
+ObjectManager<Piloto> Pilotos;
+
 int main(int argc, char const** argv){
 
 	Ros::Application *App = new Ros::Application(1000, 650, "test");
@@ -49,6 +54,29 @@ int main(int argc, char const** argv){
 	PantallaPiloto *PilotoScreen = new PantallaPiloto("PilotoScreen", App);
 	Ros::Pantalla *refPilotoScreen = PilotoScreen;
 
+	//Creao la base de datos de los pilotos.
+	Piloto *auxPiloto;
+
+	float auxPilotoVelocidad[] 	= {1.50, 1.00, 1.25, 0.90};
+	float auxPilotoEscudo[] 	= {0.80, 0.50, 0.75, 0.40};
+	float auxPilotoPower[] 		= {1.40, 0.80, 1.10, 0.70};
+
+	for(int i=0; i<=3;i++){
+
+		auxPiloto = new Piloto("Piloto." + std::to_string(i));
+		auxPiloto->setImagePiloto("img.piloto" + std::to_string(i));
+		auxPiloto->setImageNaveOn("img.Player" + std::to_string(i + 1) + "On");
+		auxPiloto->setImageNaveOn("img.Player" + std::to_string(i + 1) + "Off");
+		auxPiloto->setCurrentVelocidad(auxPilotoVelocidad[i]);
+		auxPiloto->setCurrentEscudo(auxPilotoEscudo[i]);
+		auxPiloto->setCurrentPower(auxPilotoPower[i]);
+
+		Pilotos.Add(*auxPiloto);
+
+	}
+
+	PilotoScreen->setGlobalPilotos(&Pilotos);
+
 	App->AgregarSonido("sound.Music", "assets/music.ogg");
 	App->AgregarSonido("sound.disparo", "assets/disparo.ogg");
 	App->AgregarSonido("sound.explosion", "assets/sound/EXPLOSION Bang 04.ogg");
@@ -59,6 +87,12 @@ int main(int argc, char const** argv){
 
 	App->AgregarImagen("img.Player1On", "assets/player4engineOn.png");
 	App->AgregarImagen("img.Player1Off", "assets/player4engineOff.png");
+	App->AgregarImagen("img.Player2On", "assets/player6engineOn.png");
+	App->AgregarImagen("img.Player2Off", "assets/player6engineOff.png");
+	App->AgregarImagen("img.Player3On", "assets/player7engineOn.png");
+	App->AgregarImagen("img.Player3Off", "assets/player7engineOff.png");
+	App->AgregarImagen("img.Player4On", "assets/player8engineOn.png");
+	App->AgregarImagen("img.Player4Off", "assets/player8engineOff.png");
 
 	App->AgregarImagen("img.estrella.1", "assets/estrella1.png");
 	App->AgregarImagen("img.estrella.2", "assets/estrella2.png");

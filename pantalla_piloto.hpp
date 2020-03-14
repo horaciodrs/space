@@ -6,6 +6,7 @@
 #include "lib/pantalla.hpp"
 
 #include "pantalla_menu.hpp"
+#include "piloto.hpp"
 
 
 class PantallaPiloto : public Ros::Pantalla{
@@ -18,15 +19,13 @@ class PantallaPiloto : public Ros::Pantalla{
         bool CanProcessRight;
         bool CanProcessEnter;
 
-        Ros::Object *Piloto1;
-        Ros::Object *Piloto2;
-        Ros::Object *Piloto3;
-        Ros::Object *Piloto4;
+        ObjectManager<Piloto> *globalPilotos;
+        ObjectManager<Ros::Object> dbPilotos;
         Ros::Object *PilotoSelectionLight;
 
-        PilotoSkills skillPiloto[4];
-
     public:
+
+        void setGlobalPilotos(ObjectManager<Piloto> *auxGlobalPilotos){globalPilotos = auxGlobalPilotos;}
 
         void MoverEstrellas(void);
 		void CrearEstrellas(void);

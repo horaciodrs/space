@@ -68,25 +68,19 @@ void PantallaPiloto::DibujarEstrellas(void){
 
 void PantallaPiloto::Init(void){
 
-    Piloto1 = new Ros::Object("Piloto1", App);
-	Piloto1->setImage(App->GetImage("img.piloto0"));
-    Piloto1->setX(200);
-	Piloto1->setY(300);
+    //Para solucionar el tema de los pilotos, vamos a crear un
+    //ObjectManajer<Ros::Object> que se va a alimentar de los datos
+    //leidos desde la variable global Pilotos.
 
-    Piloto2 = new Ros::Object("Piloto2", App);
-	Piloto2->setImage(App->GetImage("img.piloto1"));
-    Piloto2->setX(350);
-	Piloto2->setY(300);
+    for(int i=0; i < globalPilotos->size(); i++){
+        Ros::Object *newPiloto = new Ros::Object("Piloto" + std::to_string(i));
+        newPiloto->setApplication(App);
+        newPiloto->setImage(App->GetImage(globalPilotos->Get(i)->getImgPiloto()));
+        newPiloto->setX(200 + i*150);
+        newPiloto->setY(300);
 
-    Piloto3 = new Ros::Object("Piloto3", App);
-	Piloto3->setImage(App->GetImage("img.piloto2"));
-    Piloto3->setX(500);
-	Piloto3->setY(300);
-
-    Piloto4 = new Ros::Object("Piloto4", App);
-	Piloto4->setImage(App->GetImage("img.piloto3"));
-    Piloto4->setX(650);
-	Piloto4->setY(300);
+        dbPilotos.Add(*newPiloto);
+    }
 
     PilotoSelectionLight = new Ros::Object("PilotoSelectionLight", App);
 	PilotoSelectionLight->setImage(App->GetImage("img.piloto.selection.light"));
@@ -106,7 +100,7 @@ void PantallaPiloto::Salir(std::string pPantallaId, int pSelectedPilot){
 
     pantallaMenu =  static_cast<PantallaMenu*>(this->App->GetPantallaActiva());
 
-    pantallaMenu->setSelectedPilot(pSelectedPilot, this->skillPiloto[pSelectedPilot]);
+    pantallaMenu->setSelectedPilot(pSelectedPilot);
 
 }
 
@@ -189,10 +183,9 @@ void PantallaPiloto::Render(void){
 
 	DibujarEstrellas();
 
-    Piloto1->Draw();
-    Piloto2->Draw();
-    Piloto3->Draw();
-    Piloto4->Draw();
+    for(int i=0; i<dbPilotos.size(); i++){
+        dbPilotos.Get(i)->Draw();
+    }
 
     PilotoSelectionLight->Draw();
 
@@ -228,22 +221,6 @@ PantallaPiloto::PantallaPiloto(std::string pId, Ros::Application *pApp) : Pantal
     this->CanProcessRight = true;
     this->CanProcessEnter = true;
     this->SelectedOption = 0;
-
-    this->skillPiloto[0].Escudo = 0.8;
-    this->skillPiloto[0].Velocidad = 15;
-    this->skillPiloto[0].Power = 1.4;
-
-    this->skillPiloto[1].Escudo = 0.5;
-    this->skillPiloto[1].Velocidad = 10;
-    this->skillPiloto[1].Power = 0.8;
-
-    this->skillPiloto[2].Escudo = 0.75;
-    this->skillPiloto[2].Velocidad = 13;
-    this->skillPiloto[2].Power = 1.1;
-
-    this->skillPiloto[3].Escudo = 0.4;
-    this->skillPiloto[3].Velocidad = 9;
-    this->skillPiloto[3].Power = 0.7;
 
 }
 
