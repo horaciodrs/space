@@ -20,6 +20,10 @@ namespace Ros{
 
 	}
 
+    void Application::StopSound(std::string pId){
+        Sounds.Get(pId)->Stop();
+    }
+
     void Application::EscribirTexto(std::string fontId, std::string str, int size, int x, int y, sf::Color color){
 
 		Ros::Font *Fnt = this->Fonts.Get(fontId);

@@ -13,6 +13,10 @@ void PantallaPiloto::CrearEstrellas(void){
 
 	std::string imgEstrella("img.estrella.1");
 
+    if(Estrellas.size() > 0){
+        return;
+    }
+
 	for (int i=0; i<MAX_ESTRELLAS; i++) {
 		Ros::Object *itemEstrella = Estrellas.Add("Fondo.Estrella." + std::to_string(i));
 
@@ -111,6 +115,7 @@ void PantallaPiloto::EventHandler(void){
         if(this->CanProcessLeft == true){
             this->SelectedOption--;
             this->CanProcessLeft = false;
+            App->PlaySound("sound.menu_item", 30, false);
         }
     }else{
         this->CanProcessLeft = true;
@@ -122,6 +127,7 @@ void PantallaPiloto::EventHandler(void){
         if(this->CanProcessRight == true){
             this->SelectedOption++;
             this->CanProcessRight = false;
+            App->PlaySound("sound.menu_item", 30, false);
         }
     }else{
         this->CanProcessRight = true;
@@ -155,6 +161,7 @@ void PantallaPiloto::EventHandler(void){
         if(this->CanProcessEnter == true){
             this->Salir("MenuScreen", this->SelectedOption);
             this->CanProcessEnter = false;
+            App->PlaySound("sound.menu_item_selected", 30, false);
         }
     }else{
         this->CanProcessEnter = true;

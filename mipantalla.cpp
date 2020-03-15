@@ -226,6 +226,10 @@ void MiPantalla::CrearEstrellas(void){
 
 	std::string imgEstrella("img.estrella.1");
 
+    if(Estrellas.size() > 0){
+        return;
+    }
+
 	for (int i=0; i<MAX_ESTRELLAS; i++) {
 		Ros::Object *itemEstrella = Estrellas.Add("Fondo.Estrella." + std::to_string(i));
 
@@ -391,6 +395,9 @@ void MiPantalla::Salir(std::string pPantallaId){
 
     this->Running = false;
     this->App->SetPantallaActiva(pPantallaId);
+
+    App->StopSound("sound.Music");
+    App->PlaySound("sound.MusicMenuPiloto", 30, true);
 
 }
 

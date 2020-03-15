@@ -50,6 +50,10 @@ void PantallaMenu::CrearEstrellas(void){
 
 	std::string imgEstrella("img.estrella.1");
 
+    if(Estrellas.size() > 0){
+        return;
+    }
+
 	for (int i=0; i<MAX_ESTRELLAS; i++) {
 		Ros::Object *itemEstrella = Estrellas.Add("Fondo.Estrella." + std::to_string(i));
 
@@ -116,14 +120,16 @@ void PantallaMenu::Init(void){
 
 void PantallaMenu::Salir(std::string pPantallaId){
 
-    MiPantalla *pantallaPrincipal;
-
     this->Running = false;
     this->App->SetPantallaActiva(pPantallaId);
 
-    pantallaPrincipal =  static_cast<MiPantalla*>(this->App->GetPantallaActiva());
-    pantallaPrincipal->setSelectedPilot(SelectedPilot);
-
+    if(pPantallaId == "MainScreen"){
+        MiPantalla *pantallaPrincipal;
+        pantallaPrincipal =  static_cast<MiPantalla*>(this->App->GetPantallaActiva());
+        pantallaPrincipal->setSelectedPilot(SelectedPilot);
+        App->StopSound("sound.MusicMenuPiloto");
+        App->PlaySound("sound.Music", 30, true);
+    }
 }
 
 void PantallaMenu::EventHandler(void){
@@ -137,6 +143,7 @@ void PantallaMenu::EventHandler(void){
         if(this->CanProcessDown == true){
             this->SelectedOption++;
             this->CanProcessDown = false;
+            App->PlaySound("sound.menu_item", 30, false);
         }
     }else{
         this->CanProcessDown = true;
@@ -148,6 +155,7 @@ void PantallaMenu::EventHandler(void){
         if(this->CanProcessUp == true){
             this->SelectedOption--;
             this->CanProcessUp = false;
+            App->PlaySound("sound.menu_item", 30, false);
         }
     }else{
         this->CanProcessUp = true;
@@ -180,6 +188,8 @@ void PantallaMenu::EventHandler(void){
                     this->Salir("");
                     break; 
             }
+
+            App->PlaySound("sound.menu_item_selected", 30, false);
 
             this->CanProcessOption = false;
         }

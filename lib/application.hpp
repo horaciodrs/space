@@ -39,6 +39,7 @@ namespace Ros{
             Ros::Image *GetImage(std::string pId);
             Ros::Font *GetFont(std::string pId);
             void PlaySound(std::string pId, int volumen, bool loop);
+			void StopSound(std::string pId);
 			sf::RenderWindow *GetRenderWindow(void){return Window;}
 			void SetPantallaActiva(std::string pId);
             void AgregarImagen(std::string pId, std::string pUrl);

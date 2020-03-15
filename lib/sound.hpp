@@ -17,6 +17,7 @@ namespace Ros{
             std::string getUrl(){return Url;}
             sf::Sound* getSound(void){return Sonido;}
             void Play(int volumen, bool loop);
+            void Stop(void);
             Sound(std::string pId, std::string pUrl);
             Sound();
             ~Sound();

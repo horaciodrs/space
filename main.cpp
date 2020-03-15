@@ -79,10 +79,13 @@ int main(int argc, char const** argv){
 	MainScreen->setGlobalPilotos(&Pilotos);
 
 	App->AgregarSonido("sound.Music", "assets/music.ogg");
+	App->AgregarSonido("sound.MusicMenuPiloto", "assets/music_menu.ogg");
 	App->AgregarSonido("sound.disparo", "assets/disparo.ogg");
 	App->AgregarSonido("sound.explosion", "assets/sound/EXPLOSION Bang 04.ogg");
 	App->AgregarSonido("sound.premio", "assets/sound/SUCCESS PICKUP Collect Chime 01.ogg");
 	App->AgregarSonido("sound.lifequit", "assets/sound/IMPACT Metal Blade Clang 01.ogg");
+	App->AgregarSonido("sound.menu_item", "assets/Menu1B.wav");
+	App->AgregarSonido("sound.menu_item_selected", "assets/Item1A.wav");
 
 	App->AgregarImagen("img.Level.Background", "assets/level_background.png");
 
@@ -178,7 +181,7 @@ int main(int argc, char const** argv){
 
 	App->Init();
 
-	App->PlaySound("sound.Music", 30, true);
+	App->PlaySound("sound.MusicMenuPiloto", 30, true);
 
 	App->Run();
 

@@ -31,6 +31,8 @@ class PantallaPiloto : public Ros::Pantalla{
 		void CrearEstrellas(void);
 		void DibujarEstrellas(void);
 
+        void setSelectedPilot(int p){SelectedOption = p;}
+
         void Init(void);
         void Render(void);
         void EventHandler(void);

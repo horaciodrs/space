@@ -12,6 +12,13 @@ namespace Ros{
 
     }
 
+
+    void Sound::Stop(){
+
+        Sonido->stop();
+
+    }
+
     Sound::Sound(std::string pId, std::string pUrl) : Id(pId), Url(pUrl){
         
         bufSonido = new sf::SoundBuffer();
