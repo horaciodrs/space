@@ -29,6 +29,8 @@ class Piloto{
         float getCurrentVelocidad(void){return currentVelocidad;}
         float getCurrentEscudo(void){return currentEscudo;}
         float getCurrentPower(void){return currentPower;}
+        std::string getNaveOff(){return imgNaveOffId;}
+        std::string getNaveOn(){return imgNaveOnId;}
         std::string getImgPiloto(){return imgPilotoId;}
         /**SETTERS**/
         void setCurrentVelocidad(float v){currentVelocidad = v;}

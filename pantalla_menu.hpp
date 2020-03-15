@@ -4,6 +4,7 @@
 #include "lib/object_manager.hpp"
 #include "lib/object.hpp"
 #include "lib/pantalla.hpp"
+#include "mipantalla.hpp"
 
 class PantallaMenu : public Ros::Pantalla{
 

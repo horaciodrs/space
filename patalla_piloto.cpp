@@ -68,10 +68,6 @@ void PantallaPiloto::DibujarEstrellas(void){
 
 void PantallaPiloto::Init(void){
 
-    //Para solucionar el tema de los pilotos, vamos a crear un
-    //ObjectManajer<Ros::Object> que se va a alimentar de los datos
-    //leidos desde la variable global Pilotos.
-
     for(int i=0; i < globalPilotos->size(); i++){
         Ros::Object *newPiloto = new Ros::Object("Piloto" + std::to_string(i));
         newPiloto->setApplication(App);
@@ -79,7 +75,7 @@ void PantallaPiloto::Init(void){
         newPiloto->setX(200 + i*150);
         newPiloto->setY(300);
 
-        dbPilotos.Add(*newPiloto);
+        imgPilotos.Add(*newPiloto);
     }
 
     PilotoSelectionLight = new Ros::Object("PilotoSelectionLight", App);
@@ -139,21 +135,8 @@ void PantallaPiloto::EventHandler(void){
         this->SelectedOption = 3;
     }
 
-
-    switch(this->SelectedOption){
-        case 0:
-            this->PilotoSelectionLight->setX(200);
-            break;
-        case 1:
-            this->PilotoSelectionLight->setX(350);
-            break;
-        case 2:
-            this->PilotoSelectionLight->setX(500);
-            break;
-        case 3:
-            this->PilotoSelectionLight->setX(650);
-            break;
-    }
+    //Resaltar el piloto seleccionado...
+    this->PilotoSelectionLight->setX(200 + this->SelectedOption*150);
 
     //Procesa el evento tecla ESCAPE.
     
@@ -183,8 +166,8 @@ void PantallaPiloto::Render(void){
 
 	DibujarEstrellas();
 
-    for(int i=0; i<dbPilotos.size(); i++){
-        dbPilotos.Get(i)->Draw();
+    for(int i=0; i<imgPilotos.size(); i++){
+        imgPilotos.Get(i)->Draw();
     }
 
     PilotoSelectionLight->Draw();

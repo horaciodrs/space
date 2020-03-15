@@ -295,10 +295,10 @@ void Player::EventHandler(){
 	}
 
 	if (Pantalla->isKeyActive[Ros::keyUp] == true){
-		this->setImage(this->App->GetImage("img.Player1On"));
+		this->setImage(this->App->GetImage(Pantalla->globalPilotos->Get(Pantalla->SelectedPilot)->getNaveOn()));
 		this->moveByAngle(VELOCIDAD_NAVE);
 	}else{
-		this->setImage(this->App->GetImage("img.Player1Off"));
+		this->setImage(this->App->GetImage(Pantalla->globalPilotos->Get(Pantalla->SelectedPilot)->getNaveOff()));
 	}
 
 	if (Pantalla->isKeyActive[Ros::keyDown] == true){

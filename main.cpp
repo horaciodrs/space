@@ -66,7 +66,7 @@ int main(int argc, char const** argv){
 		auxPiloto = new Piloto("Piloto." + std::to_string(i));
 		auxPiloto->setImagePiloto("img.piloto" + std::to_string(i));
 		auxPiloto->setImageNaveOn("img.Player" + std::to_string(i + 1) + "On");
-		auxPiloto->setImageNaveOn("img.Player" + std::to_string(i + 1) + "Off");
+		auxPiloto->setImageNaveOff("img.Player" + std::to_string(i + 1) + "Off");
 		auxPiloto->setCurrentVelocidad(auxPilotoVelocidad[i]);
 		auxPiloto->setCurrentEscudo(auxPilotoEscudo[i]);
 		auxPiloto->setCurrentPower(auxPilotoPower[i]);
@@ -76,6 +76,7 @@ int main(int argc, char const** argv){
 	}
 
 	PilotoScreen->setGlobalPilotos(&Pilotos);
+	MainScreen->setGlobalPilotos(&Pilotos);
 
 	App->AgregarSonido("sound.Music", "assets/music.ogg");
 	App->AgregarSonido("sound.disparo", "assets/disparo.ogg");

@@ -20,7 +20,7 @@ class PantallaPiloto : public Ros::Pantalla{
         bool CanProcessEnter;
 
         ObjectManager<Piloto> *globalPilotos;
-        ObjectManager<Ros::Object> dbPilotos;
+        ObjectManager<Ros::Object> imgPilotos;
         Ros::Object *PilotoSelectionLight;
 
     public:

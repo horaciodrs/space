@@ -116,8 +116,13 @@ void PantallaMenu::Init(void){
 
 void PantallaMenu::Salir(std::string pPantallaId){
 
+    MiPantalla *pantallaPrincipal;
+
     this->Running = false;
     this->App->SetPantallaActiva(pPantallaId);
+
+    pantallaPrincipal =  static_cast<MiPantalla*>(this->App->GetPantallaActiva());
+    pantallaPrincipal->setSelectedPilot(SelectedPilot);
 
 }
 

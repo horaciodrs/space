@@ -8,6 +8,7 @@
 #include "player.hpp"
 #include "enemigo.hpp"
 #include "proyectil.hpp"
+#include "piloto.hpp"
 
 #define TIPO_PREMIO_DISPARO1 1
 #define TIPO_PREMIO_DISPARO2 2
@@ -16,8 +17,10 @@
 
 class MiPantalla : public Ros::Pantalla{
 	private:
+		int SelectedPilot;
 		int Puntos;
         Player *Nave;
+		Ros::Object *imgSelectedPilot;
         ObjectManager<Enemigo> Enemigos;
 		ObjectManager<Ros::Object> Estrellas;
 		ObjectManager<Ros::Object> PremioDisparo1;
@@ -30,8 +33,11 @@ class MiPantalla : public Ros::Pantalla{
         Ros::Object *WeaponBar;
         bool CanProcessEscape;
 	public:
+		ObjectManager<Piloto> *globalPilotos;
 	    friend class Player;
 	    friend class Enemigo;
+		void setSelectedPilot(int pilot){SelectedPilot = pilot;}
+		void setGlobalPilotos(ObjectManager<Piloto> *auxPilotos){globalPilotos = auxPilotos;}
 	    int GetCantidadDisparosEnemigo(void);
 	    void SumaPuntos(int p);
 		void MoverEstrellas(void);

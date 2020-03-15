@@ -307,11 +307,18 @@ void MiPantalla::Init(void){
 
     Nave = new Player("Nave.Player1", App);
 
-    Nave->setImage(App->GetImage("img.Player1Off"));
+    Nave->setImage(App->GetImage(globalPilotos->Get(SelectedPilot)->getNaveOff()));
+    //Nave->setImage(App->GetImage("img.Player1Off"));
+    
     Nave->setX(App->GetScreenWidth()/2);
     Nave->setY(App->GetScreenHeight() - Nave->getH());
 
     CrearEnemigos();
+
+    imgSelectedPilot = new Ros::Object("img.SelectedPilot");
+    imgSelectedPilot->setX(App->GetScreenWidth() - 54);
+    imgSelectedPilot->setY(52);
+    imgSelectedPilot->setImage(App->GetImage(globalPilotos->Get(SelectedPilot)->getImgPiloto()));
 
 }
 
@@ -320,6 +327,7 @@ void MiPantalla::Render(void){
 	Background->Draw();
     Lifebar->Draw();
     WeaponBar->Draw();
+    imgSelectedPilot->Draw();
 
 	DibujarEstrellas();
 	DibujarPremios();
@@ -434,6 +442,7 @@ void MiPantalla::End(){
 	delete Background;
     delete Lifebar;
     delete WeaponBar;
+    delete imgSelectedPilot;
 }
 
 MiPantalla::MiPantalla(std::string pId, Ros::Application *pApp) : Pantalla(pId, pApp){
