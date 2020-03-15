@@ -19,6 +19,16 @@ class PantallaPiloto : public Ros::Pantalla{
         bool CanProcessRight;
         bool CanProcessEnter;
 
+        bool mostrandoSkills;
+        bool terminoEscudo;
+        bool terminoVelocidad;
+        bool terminoPower;
+        float mostrandoSkillsRatio;    //Porcentaje mostrado de la habilidad.
+        sf::RectangleShape *skillEscudo;
+        sf::RectangleShape *skillPower;
+        sf::RectangleShape *skillVelocidad;
+
+
         ObjectManager<Piloto> *globalPilotos;
         ObjectManager<Ros::Object> imgPilotos;
         Ros::Object *PilotoSelectionLight;
@@ -32,6 +42,8 @@ class PantallaPiloto : public Ros::Pantalla{
 		void DibujarEstrellas(void);
 
         void setSelectedPilot(int p){SelectedOption = p;}
+        void mostrarSkills(void);
+        void resetSkills(void);
 
         void Init(void);
         void Render(void);

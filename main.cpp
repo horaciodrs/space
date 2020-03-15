@@ -57,9 +57,9 @@ int main(int argc, char const** argv){
 	//Creao la base de datos de los pilotos.
 	Piloto *auxPiloto;
 
-	float auxPilotoVelocidad[] 	= {1.50, 1.00, 1.25, 0.90};
-	float auxPilotoEscudo[] 	= {0.80, 0.50, 0.75, 0.40};
-	float auxPilotoPower[] 		= {1.40, 0.80, 1.10, 0.70};
+	float auxPilotoVelocidad[] 	= {95, 75, 85, 97};
+	float auxPilotoEscudo[] 	= {80, 70, 75, 85};
+	float auxPilotoPower[] 		= {60, 95, 70, 55};
 
 	for(int i=0; i<=3;i++){
 
@@ -67,9 +67,9 @@ int main(int argc, char const** argv){
 		auxPiloto->setImagePiloto("img.piloto" + std::to_string(i));
 		auxPiloto->setImageNaveOn("img.Player" + std::to_string(i + 1) + "On");
 		auxPiloto->setImageNaveOff("img.Player" + std::to_string(i + 1) + "Off");
-		auxPiloto->setCurrentVelocidad(auxPilotoVelocidad[i]);
-		auxPiloto->setCurrentEscudo(auxPilotoEscudo[i]);
-		auxPiloto->setCurrentPower(auxPilotoPower[i]);
+		auxPiloto->setVelocidad(auxPilotoVelocidad[i]);
+		auxPiloto->setEscudo(auxPilotoEscudo[i]);
+		auxPiloto->setPower(auxPilotoPower[i]);
 
 		Pilotos.Add(*auxPiloto);
 

@@ -29,6 +29,9 @@ class Piloto{
         float getCurrentVelocidad(void){return currentVelocidad;}
         float getCurrentEscudo(void){return currentEscudo;}
         float getCurrentPower(void){return currentPower;}
+        float getVelocidad(void){return Velocidad;}
+        float getEscudo(void){return Escudo;}
+        float getPower(void){return Power;}
         std::string getNaveOff(){return imgNaveOffId;}
         std::string getNaveOn(){return imgNaveOnId;}
         std::string getImgPiloto(){return imgPilotoId;}
@@ -36,6 +39,9 @@ class Piloto{
         void setCurrentVelocidad(float v){currentVelocidad = v;}
         void setCurrentEscudo(float v){currentEscudo = v;}
         void setCurrentPower(float v){currentPower = v;}
+        void setVelocidad(float v){Velocidad = v;}
+        void setEscudo(float v){Escudo = v;}
+        void setPower(float v){Power = v;}
         
         void setImagePiloto(std::string pId){imgPilotoId = pId;}
         void setImageNaveOn(std::string pId){imgNaveOnId = pId;}
