@@ -57,8 +57,8 @@ int main(int argc, char const** argv){
 	//Creao la base de datos de los pilotos.
 	Piloto *auxPiloto;
 
-	float auxPilotoVelocidad[] 	= {95, 75, 85, 97};
-	float auxPilotoEscudo[] 	= {80, 70, 75, 85};
+	float auxPilotoVelocidad[] 	= {80, 65, 50, 97};
+	float auxPilotoEscudo[] 	= {80, 85, 95, 70};
 	float auxPilotoPower[] 		= {60, 95, 70, 55};
 
 	for(int i=0; i<=3;i++){

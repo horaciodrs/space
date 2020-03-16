@@ -169,6 +169,8 @@ void Player::MoverDisparos(void){
                 //El enemigo es alcanzado por un disparo.
                 //Hay que borrar el disparo y descontarle vida al enemigo
 
+				float ratioVida = Pantalla->globalPilotos->Get(Pantalla->SelectedPilot)->getPower() / 100;
+
                 Enemigo *itemEnemigo = Pantalla->Enemigos.Get(x);
 
                 idToDelete.push_back(itemDisparo->getId());
@@ -178,13 +180,13 @@ void Player::MoverDisparos(void){
                 if(itemDisparo->getImageId() == "img.disparo.4"){
                     itemEnemigo->addVida(-100);
                 }else if(itemDisparo->getImageId() == "img.disparo.3"){
-                    itemEnemigo->addVida(-50);
+                    itemEnemigo->addVida((int)(-50*ratioVida));
                     Pantalla->SumaPuntos(1);
                 }else if(itemDisparo->getImageId() == "img.disparo.2"){
-                    itemEnemigo->addVida(-34);
+                    itemEnemigo->addVida((int)(-34*ratioVida));
                     Pantalla->SumaPuntos(4);
                 }else{
-                    itemEnemigo->addVida(-20);
+                    itemEnemigo->addVida((int)(-20*ratioVida));
                     Pantalla->SumaPuntos(6);
                 }
 
@@ -260,7 +262,8 @@ void Player::BuscarColision(void){
 	for (int i = 0; i < Pantalla->Enemigos.size(); ++i)
 	{
 		if(Pantalla->Enemigos.Get(i)->CheckCollision(this) == true){
-			AddLife(-5);
+			float ratioVida = Pantalla->globalPilotos->Get(Pantalla->SelectedPilot)->getEscudo() / 100;
+			AddLife((int)(-5*ratioVida));
 		}
 	}
 
@@ -274,7 +277,7 @@ void Player::EventHandler(){
 	DeleteDisparos();
 	BuscarColision();
 	BuscarPremio();
-
+	
 	Pantalla->CrearEnemigos();
 
 	if(Pantalla->isKeyActive[Ros::keySpace] == true){
@@ -295,14 +298,20 @@ void Player::EventHandler(){
 	}
 
 	if (Pantalla->isKeyActive[Ros::keyUp] == true){
+
+		float speedRatio = Pantalla->globalPilotos->Get(Pantalla->SelectedPilot)->getVelocidad() / 100;
+
 		this->setImage(this->App->GetImage(Pantalla->globalPilotos->Get(Pantalla->SelectedPilot)->getNaveOn()));
-		this->moveByAngle(VELOCIDAD_NAVE);
+		this->moveByAngle((int)(VELOCIDAD_NAVE * speedRatio));
 	}else{
 		this->setImage(this->App->GetImage(Pantalla->globalPilotos->Get(Pantalla->SelectedPilot)->getNaveOff()));
 	}
 
 	if (Pantalla->isKeyActive[Ros::keyDown] == true){
-		this->moveByAngle(-VELOCIDAD_NAVE);
+
+		float speedRatio = Pantalla->globalPilotos->Get(Pantalla->SelectedPilot)->getVelocidad() / 100;
+
+		this->moveByAngle((int)(-VELOCIDAD_NAVE * speedRatio));
 	}
 
 	if(this->getX() > this->App->GetScreenWidth()){

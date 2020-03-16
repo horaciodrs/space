@@ -32,7 +32,10 @@ void MiPantalla::BorrarDisparoEnemigosInactivos(void){
             idDeleteProyectiles.push_back(DisparosEnemigo.Get(i)->getId());
         }
         if(DisparosEnemigo.Get(i)->CheckCollision(Nave) == true){
-            Nave->AddLife(-10);
+            float ratioVida = this->globalPilotos->Get(this->SelectedPilot)->getEscudo() / 100;
+
+			Nave->AddLife((int)(-10*ratioVida));
+
             App->PlaySound("sound.lifequit", 50, false);
             
             idDeleteProyectiles.push_back(DisparosEnemigo.Get(i)->getId());
@@ -208,7 +211,11 @@ void MiPantalla::DibujarEstrellas(void){
 
 void MiPantalla::DibujarLife(void){
 
-    Lifebar->setImage(App->GetImage("img.lifebar" + std::to_string(Nave->GetLife())));
+    //los archivos de imagen de el lifebar van de cinco en cinco.
+    //por lo tanto si la vida no termina en 5 o en 0 da error.
+    int fixedVida = Nave->GetLife() - Nave->GetLife()%5;
+
+    Lifebar->setImage(App->GetImage("img.lifebar" + std::to_string(fixedVida)));
 
 }
 
